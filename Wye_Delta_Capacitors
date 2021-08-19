@@ -1,0 +1,15 @@
+%Wye_Delta_Capacitors
+%using algebraic equations derived from making equivalent triangle and
+%y-circuits, solve the symbolic relations needed for equivalency, then,
+%applying two additional resistors to the ends ofthe y-circuit, calculates
+%C total capacitance
+
+syms C1 C2 C3 Ca Cb Cc
+eqn1='1/(Ca+Cb)==(1/C1+1/(C2+C3))'
+eqn2='1/(Ca+Cc)==(1/C2+1/(C1+C3))'
+eqn3='1/(Cb+Cc)==(1/C3+1/(C1+C2))'
+A=solve(str2sym(eqn1),str2sym(eqn2),str2sym(eqn3),Ca,Cb,Cc);
+B=solve(str2sym(eqn1),str2sym(eqn2),str2sym(eqn3),C1,C2,C3);
+Ca=simplify(A.Ca),Cb=simplify(A.Cb),Cc=simplify(A.Cc)
+C1=simplify(B.C1),C2=simplify(B.C2),C3=simplify(B.C3)
+C = simplify(((Cc*C4)/(Cc+C4)+(Cb*C5)/(Cb+C5)*Ca)/((Cc*C4)/(Cc+C4)+(Cb*C5)/(Cb+C5)+Ca))
