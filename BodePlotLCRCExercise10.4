@@ -1,0 +1,7 @@
+%after solving algebraically, use tf to create a transfer function with
+%appropriate values, then apply bode MATLAB Function to plot
+syms s
+LC = 1;
+RC = 0.5;
+G = tf([1], [LC -RC 1]);
+bode(G)
